@@ -103,4 +103,3 @@ if __name__ == "__main__":
 	m.field[1][0] = 1
 	m.field[m.SIZE[0]-2][m.SIZE[1]-1] = 1
 	m.export()
-
