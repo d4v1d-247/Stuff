@@ -69,12 +69,13 @@ class Maze:
 				self.cells.append(a+b)
 			self.walls.pop(0)
 
-	def export(self, cell_width=9, wall_width=1):
+	def export(self, cell_width=9, wall_width=1, negative=False):
 		""" Exports the maze to a PNG file
 
 		Args:
 			cell_width: The width of the cells 
 			wall_width: The width of the walls
+			negative: Flip the colors
 		"""
 		img_size = (
 		self.SIZE[0] // 2 * cell_width
@@ -92,14 +93,14 @@ class Maze:
 			posY = 0
 			for y in range(self.SIZE[1]):
 				height = cell_width if y % 2 else wall_width
-				dimg.rectangle((posX, posY, posX+width, posY+height), self.field[x][y]!=1)
+				dimg.rectangle((posX, posY, posX+width, posY+height), (self.field[x][y]==1)^negative)
 				posY += height
 			posX += width
 		
 		img.save("result.png")
 
 if __name__ == "__main__":
-	m = Maze((100, 100), 0)
+	m = Maze((10, 10), 0)
 	m.field[1][0] = 1
 	m.field[m.SIZE[0]-2][m.SIZE[1]-1] = 1
-	m.export()
+	m.export(negative=True)
