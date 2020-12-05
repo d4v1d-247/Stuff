@@ -21,9 +21,9 @@ class Maze:
 		self.field = []  # A 2D List of each position of the maze
 
 		# Create Waffle and fill Cells and Walls
-		for x in range(self.SIZE[1]):
+		for x in range(self.SIZE[0]):
 			self.field.append([])
-			for y in range(self.SIZE[0]):
+			for y in range(self.SIZE[1]):
 				if x * y % 2:
 					self.field[x].append(1)
 					self.cells.append([(x, y)])
@@ -100,7 +100,7 @@ class Maze:
 		img.save("result.png")
 
 if __name__ == "__main__":
-	m = Maze((10, 10), 0)
+	m = Maze((10, 8), 0)
 	m.field[1][0] = 1
 	m.field[m.SIZE[0]-2][m.SIZE[1]-1] = 1
 	m.export(negative=True)
